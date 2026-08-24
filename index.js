@@ -1,9 +1,13 @@
 var board = [];
 function generateSolution() {
-    for (var i = 1; i <= 9; i++) { }
+    var row = [];
+    for (var r = 1; r <= 9; r++) {
+        row.push(getRandomNumber());
+    }
+    console.log("row: ", row);
 }
 function getRandomNumber() {
     var number = Math.ceil(Math.random() * 9);
-    console.log(number);
+    return number;
 }
-getRandomNumber();
+generateSolution();
