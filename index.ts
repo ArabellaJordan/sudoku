@@ -27,8 +27,8 @@ function generateSolution() {
 // }
 
 // checks if the row includes the input
-function checkRow(number: number, row: number): boolean {
-  const exist = board[row].includes(number);
+export function checkRow(number: number, row: number[]): boolean {
+  const exist = row.includes(number);
   return exist;
 }
 

@@ -1,3 +1,4 @@
+"use strict";
 var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
         if (ar || !(i in from)) {
@@ -7,18 +8,17 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.checkRow = checkRow;
 var board = [];
 function generateSolution() {
     board = initializeBoard();
     var selection = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     var updatedSelection;
     for (var row = 0; row < 9; row++) {
-        console.log("selection: ", selection);
         updatedSelection = __spreadArray([], selection, true);
-        console.log("up selection: ", updatedSelection);
         for (var col = 0; col < 9; col++) {
             var index = Math.floor(Math.random() * updatedSelection.length);
-            console.log("index [".concat(row, "][").concat(col, "]: ").concat(updatedSelection[index]));
             board[row][col] = updatedSelection[index];
             updatedSelection.splice(index, 1);
         }
@@ -33,19 +33,19 @@ function generateSolution() {
 // }
 // checks if the row includes the input
 function checkRow(number, row) {
-    var exist = board[row].includes(number);
+    var exist = row.includes(number);
     return exist;
 }
-function generateRow() {
-    var selection = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    var row = [];
-    for (var n = 1; n <= 9; n++) {
-        var index = Math.floor(Math.random() * selection.length);
-        row.push(selection[index]);
-        selection.splice(index, 1);
-    }
-    return row;
-}
+// function generateRow(): number[] {
+//   const selection = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+//   const row: number[] = [];
+//   for (let n = 1; n <= 9; n++) {
+//     const index = Math.floor(Math.random() * selection.length);
+//     row.push(selection[index]);
+//     selection.splice(index, 1);
+//   }
+//   return row;
+// }
 function initializeBoard() {
     return Array.from({ length: 9 }, function () { return Array(9).fill(0); });
 }
