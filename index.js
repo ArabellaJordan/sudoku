@@ -1,16 +1,30 @@
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 var board = [];
 function generateSolution() {
     board = initializeBoard();
-    //   const selection = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    //   for (let row = 0; row <= 9; row++) {
-    //     for (let col = 0; col <= 9; col++) {
-    //       const index = Math.floor(Math.random() * selection.length);
-    //       board[row][col] = selection[index];
-    //       selection.splice(index, 1);
-    //     }
-    //   }
+    var selection = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var updatedSelection;
+    for (var row = 0; row < 9; row++) {
+        console.log("selection: ", selection);
+        updatedSelection = __spreadArray([], selection, true);
+        console.log("up selection: ", updatedSelection);
+        for (var col = 0; col < 9; col++) {
+            var index = Math.floor(Math.random() * updatedSelection.length);
+            console.log("index [".concat(row, "][").concat(col, "]: ").concat(updatedSelection[index]));
+            board[row][col] = updatedSelection[index];
+            updatedSelection.splice(index, 1);
+        }
+        console.log("board: ", board);
+    }
     //   console.log("check row", checkRow(2, 0));
-    console.log("board: ", board);
 }
 // generate random number between 1 and 9
 // function getRandomNumber(): number {
