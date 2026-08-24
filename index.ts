@@ -1,9 +1,18 @@
-const board: number[][] = [];
+let board: number[][] = [];
 
 function generateSolution() {
-  board.push(generateRow());
+  board = initializeBoard();
 
-  console.log("check row", checkRow(2, 0));
+  // const selection = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  // for (let row = 0; row <= 9; row++) {
+  //   for (let col = 0; col <= 9; col++) {
+  //     const index = Math.floor(Math.random() * selection.length);
+  //     board[row][col] = selection[index];
+  //     selection.splice(index, 1);
+  //   }
+  // }
+
+  //   console.log("check row", checkRow(2, 0));
   console.log("board: ", board);
 }
 
@@ -28,6 +37,10 @@ function generateRow(): number[] {
     selection.splice(index, 1);
   }
   return row;
+}
+
+function initializeBoard() {
+  return Array.from({ length: 9 }, () => Array(9).fill(0));
 }
 
 generateSolution();
