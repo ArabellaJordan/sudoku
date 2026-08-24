@@ -11,10 +11,10 @@ function generateSolution() {
     for (let col = 0; col < 9; col++) {
       const index = Math.floor(Math.random() * updatedSelection.length);
 
-      board[row][col] = updatedSelection[index];
+      board![row]![col] = updatedSelection[index]!;
       updatedSelection.splice(index, 1);
     }
-    console.log("board: ", board);
+    // console.log("board: ", board);
   }
 
   //   console.log("check row", checkRow(2, 0));

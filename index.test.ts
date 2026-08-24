@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { checkRow } from ".";
+import { checkRow } from "./index.js";
 
 describe("checkRow", () => {
   it("returns true when the number exists in the row", () => {
