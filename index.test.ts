@@ -34,4 +34,11 @@ describe("generateBoard", () => {
       }
     }
   });
+
+  it("returns true if the numbers in each row is unique", () => {
+    const result = generateBoard();
+    for (const row of result) {
+      expect(new Set(row).size).toBe(9);
+    }
+  });
 });
