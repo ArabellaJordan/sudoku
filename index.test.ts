@@ -24,9 +24,9 @@ describe("checkRow", () => {
  * Checks if the numbers in a 3x3 box are unique
  */
 describe("generateBoard", () => {
-  it("returns true if every number in a cell is between 1 and 9", () => {
-    const result = generateBoard();
+  const result = generateBoard();
 
+  it("returns true if every number in a cell is between 1 and 9", () => {
     for (const row of result) {
       for (const cell of row) {
         expect(cell).toBeGreaterThanOrEqual(1);
@@ -36,9 +36,19 @@ describe("generateBoard", () => {
   });
 
   it("returns true if the numbers in each row is unique", () => {
-    const result = generateBoard();
     for (const row of result) {
       expect(new Set(row).size).toBe(9);
+    }
+  });
+
+  it("returns true if the numbers in each column is unique", () => {
+    for (let col = 0; col < 9; col++) {
+      const column = result.map((row) => row[col]);
+
+      console.log("board: ", result);
+      console.log("column: ", column);
+
+      expect(new Set(column).size).toBe(9);
     }
   });
 });
