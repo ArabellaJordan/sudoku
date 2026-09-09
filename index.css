@@ -1,0 +1,48 @@
+body {
+  height: 100vh;
+  position: relative;
+  background-color: #eae2d6;
+}
+
+* {
+  position: relative;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 5rem auto;
+  text-align: center;
+  font-family: sans-serif;
+  color: #7f6b4d;
+}
+
+#board {
+  height: 70vh;
+  width: 70vh;
+  margin: 4vh auto;
+}
+
+.row {
+  height: calc(100% / 9);
+  display: flex;
+  border: 2px solid #eae2d6;
+}
+
+.col {
+  background-color: #eae2d6;
+  border: 2px solid #8b9a6e;
+  height: 100%;
+  width: calc(100% / 9);
+  cursor: pointer;
+  border-radius: 0.35rem;
+}
+
+.col:nth-of-type(3),
+.col:nth-of-type(6) {
+  border-right: 0.35rem solid #8b9a6e;
+}
+
+.row:nth-of-type(3) > .col,
+.row:nth-of-type(6) > .col {
+  border-bottom: 0.35rem solid #8b9a6e;
+}
