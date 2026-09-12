@@ -1,13 +1,23 @@
 import { solvedBoard } from "./solution.js";
-let board: number[][] = [];
 
-export function generateBoard() {
+export function loadBoard() {
+  const board = generateBoard();
+
+  const cells = Array.from(document.getElementsByClassName("col"));
+
+  cells.forEach((cell, index) => {
+    const row = Math.floor(index / 9);
+    const col = index % 9;
+
+    cell.innerHTML = `${board[row]![col]! == 0 ? "" : board[row]![col]!}`;
+  });
+}
+
+function generateBoard() {
   const solvedBoard = getBoard();
   const validBoard = showFewNumbers(solvedBoard);
 
-  console.log("board: ", validBoard);
-
-  return board;
+  return validBoard;
 }
 
 // only show a few numbers
@@ -40,4 +50,4 @@ function getBoard() {
   return solvedBoard;
 }
 
-generateBoard();
+loadBoard();

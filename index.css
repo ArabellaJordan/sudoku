@@ -35,6 +35,12 @@ h1 {
   width: calc(100% / 9);
   cursor: pointer;
   border-radius: 0.35rem;
+  text-align: center;
+  font-size: 2.5rem;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .col:nth-of-type(3),
