@@ -1,3 +1,8 @@
+html {
+  height: 100vh;
+  width: 100vw;
+}
+
 body {
   height: 100vh;
   position: relative;
@@ -10,20 +15,20 @@ body {
 }
 
 h1 {
-  margin: 5rem auto;
+  margin: 3rem auto;
   text-align: center;
   font-family: sans-serif;
   color: #7f6b4d;
 }
 
 #board {
-  height: 70vh;
-  width: 70vh;
-  margin: 4vh auto;
+  height: 90vh;
+  width: 90vh;
+  margin: 2vh auto;
 }
 
 .row {
-  height: calc(100% / 9);
+  height: calc(100% / 16);
   display: flex;
   border: 2px solid #eae2d6;
 }
@@ -32,23 +37,24 @@ h1 {
   background-color: #eae2d6;
   border: 2px solid #8b9a6e;
   height: 100%;
-  width: calc(100% / 9);
-  cursor: pointer;
+  width: calc(100% / 16);
   border-radius: 0.35rem;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   font-family: sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.col:nth-of-type(3),
-.col:nth-of-type(6) {
+.col:nth-of-type(4),
+.col:nth-of-type(8),
+.col:nth-of-type(12) {
   border-right: 0.35rem solid #8b9a6e;
 }
 
-.row:nth-of-type(3) > .col,
-.row:nth-of-type(6) > .col {
+.row:nth-of-type(4) > .col,
+.row:nth-of-type(8) > .col,
+.row:nth-of-type(12) > .col {
   border-bottom: 0.35rem solid #8b9a6e;
 }

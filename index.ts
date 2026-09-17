@@ -6,8 +6,8 @@ export function loadBoard() {
   const cells = Array.from(document.getElementsByClassName("col"));
 
   cells.forEach((cell, index) => {
-    const row = Math.floor(index / 9);
-    const col = index % 9;
+    const row = Math.floor(index / 16);
+    const col = index % 16;
 
     cell.innerHTML = `${board[row]![col]! == 0 ? "" : board[row]![col]!}`;
   });
@@ -23,8 +23,8 @@ function generateBoard() {
 // only show a few numbers
 function showFewNumbers(completeBoard: number[][]) {
   const board = completeBoard.map((row) => row.map(() => 0));
-  for (let row = 0; row < 9; row++) {
-    for (let col = 0; col < 9; col++) {
+  for (let row = 0; row < 16; row++) {
+    for (let col = 0; col < 16; col++) {
       const showNumber = Math.random() < 0.3;
       if (showNumber) {
         board[row]![col] = completeBoard[row]![col]!;
