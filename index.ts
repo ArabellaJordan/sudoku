@@ -9,7 +9,7 @@ export function loadBoard() {
     const row = Math.floor(index / 16);
     const col = index % 16;
 
-    cell.innerHTML = `${board[row]![col]! == 0 ? "" : board[row]![col]!}`;
+    cell.innerHTML = `${board[row]![col]! == 0 ? "" : convertToLetter(board[row]![col]!)}`;
   });
 }
 
@@ -44,6 +44,18 @@ function existInColumn(number: number, column: number[]) {
 export function checkRow(number: number, row: number[]): boolean {
   const exist = row.includes(number);
   return exist;
+}
+
+function convertToLetter(number: number): number | string {
+  if (number >= 0 && number <= 9) return number;
+
+  const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+
+  if (number > 16) {
+    console.error("Invalid number: greater than 16");
+  }
+  const letter = letters[number - 10];
+  return letter!;
 }
 
 function getBoard() {
