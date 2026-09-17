@@ -49,5 +49,3 @@ export function checkRow(number: number, row: number[]): boolean {
 function getBoard() {
   return solvedBoard;
 }
-
-loadBoard();
