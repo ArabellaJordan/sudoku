@@ -35,7 +35,7 @@ h1 {
 
 .col {
   background-color: #eae2d6;
-  border: 2px solid #8b9a6e;
+  border: 2px solid #9a6e6e;
   height: 100%;
   width: calc(100% / 16);
   border-radius: 0.35rem;
@@ -50,11 +50,11 @@ h1 {
 .col:nth-of-type(4),
 .col:nth-of-type(8),
 .col:nth-of-type(12) {
-  border-right: 0.35rem solid #8b9a6e;
+  border-right: 0.35rem solid #9a6e6e;
 }
 
 .row:nth-of-type(4) > .col,
 .row:nth-of-type(8) > .col,
 .row:nth-of-type(12) > .col {
-  border-bottom: 0.35rem solid #8b9a6e;
+  border-bottom: 0.35rem solid #9a6e6e;
 }

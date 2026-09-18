@@ -9,7 +9,7 @@ export function loadBoard() {
     const row = Math.floor(index / 16);
     const col = index % 16;
 
-    cell.innerHTML = `${board[row]![col]! == 0 ? "" : board[row]![col]!}`;
+    cell.innerHTML = `${board[row]![col]! == 0 ? "" : convertToLetter(board[row]![col]!)}`;
   });
 }
 
