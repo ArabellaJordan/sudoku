@@ -39,9 +39,9 @@ jobs:
 
       - name: Add cache busting
         run: |
-          sed -i "s/index.js?v=COMMIT_SHA/index.js?v=${GITHUB_SHA}/g" dist/index.html
-          sed -i "s|./solution.js|./solution.js?v=${GITHUB_SHA}|g" dist/index.js
-          sed -i "s/index.css?v=COMMIT_SHA/index.css?v=${GITHUB_SHA}/g" dist/index.html
+          sed -i 's|./index.js|./index.js?v='"${GITHUB_SHA}"'|g' dist/index.html
+          sed -i 's|index.css|index.css?v='"${GITHUB_SHA}"'|g' dist/index.html
+          sed -i 's|./solution.js|./solution.js?v='"${GITHUB_SHA}"'|g' dist/index.js
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
