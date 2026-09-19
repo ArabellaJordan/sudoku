@@ -7,6 +7,7 @@ body {
   height: 100vh;
   position: relative;
   background-color: #eae2d6;
+  margin: 0;
 }
 
 * {
@@ -57,4 +58,15 @@ h1 {
 .row:nth-of-type(8) > .col,
 .row:nth-of-type(12) > .col {
   border-bottom: 0.35rem solid #729a6e;
+}
+
+footer {
+  background-color: #40623d;
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.125rem;
+  font-family: sans-serif;
+  color: #b5a997;
+  padding: 0.35rem;
+  width: 100vw;
 }

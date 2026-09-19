@@ -61,3 +61,12 @@ function convertToLetter(number: number): number | string {
 function getBoard() {
   return solvedBoard;
 }
+
+export function setVersion() {
+  const currentVersion = "1.0.0";
+  const versionElement = document.getElementById("version");
+
+  if (versionElement) {
+    versionElement.textContent = currentVersion;
+  }
+}
