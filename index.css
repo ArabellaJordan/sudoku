@@ -46,6 +46,19 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+.col:hover {
+  background-color: #cee3c6;
+}
+
+.inactive {
+  cursor: default !important;
+}
+
+.inactive:hover {
+  background-color: #eae2d6;
 }
 
 .col:nth-of-type(4),
