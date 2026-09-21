@@ -3,13 +3,19 @@ import { solvedBoard } from "./solution.js";
 export function loadBoard() {
   const board = generateBoard();
 
-  const cells = Array.from(document.getElementsByClassName("col"));
+  const cells = Array.from(document.querySelectorAll<HTMLInputElement>(".col"));
 
   cells.forEach((cell, index) => {
     const row = Math.floor(index / 16);
     const col = index % 16;
 
-    cell.innerHTML = `${board[row]![col]! == 0 ? "" : board[row]![col]!}`;
+    if (board[row]![col]! !== 0) {
+      cell.value = `${board[row]![col]!}`;
+      cell.disabled = true;
+      cell.classList.add("inactive");
+    } else {
+      cell.value = "";
+    }
   });
 }
 
@@ -63,10 +69,20 @@ function getBoard() {
 }
 
 export function setVersion() {
-  const currentVersion = "1.0.0";
+  const currentVersion = "1";
   const versionElement = document.getElementById("version");
 
   if (versionElement) {
     versionElement.textContent = currentVersion;
   }
+}
+
+export function enterNumber() {
+  const cells = document.getElementsByClassName("col");
+  Array.from(cells).forEach((cell) => {
+    cell.addEventListener("input", (event) => {
+      cell.innerHTML = "Z";
+      console.log(event);
+    });
+  });
 }
