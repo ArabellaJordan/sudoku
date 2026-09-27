@@ -53,6 +53,10 @@ h1 {
   background-color: #cee3c6;
 }
 
+.invalid {
+  color: rgb(201, 19, 19) !important;
+}
+
 .inactive {
   cursor: default !important;
 }

@@ -105,13 +105,14 @@ export function enterNumber() {
 
       const rowIndex = Math.floor(index / 16);
       const row = mainBoard[rowIndex];
-      console.log("event index: ", index);
-      console.log("event row: ", row);
-      console.log("board row: ", mainBoard[rowIndex]);
 
-      if (cell.value != "" && row) {
+      if (row) {
         const exists = checkRow(parseInt(cell.value), row);
-        console.log("exists: ", exists);
+        if (exists) {
+          cell.classList.add("invalid");
+        } else {
+          cell.classList.remove("invalid");
+        }
       }
     });
   });
