@@ -1,4 +1,5 @@
 import { solvedBoard } from "./solution.js";
+let mainBoard: number[][];
 
 export function loadBoard() {
   const board = generateBoard();
@@ -21,9 +22,9 @@ export function loadBoard() {
 
 function generateBoard() {
   const solvedBoard = getBoard();
-  const validBoard = showFewNumbers(solvedBoard);
+  mainBoard = showFewNumbers(solvedBoard);
 
-  return validBoard;
+  return mainBoard;
 }
 
 // only show a few numbers
@@ -93,7 +94,7 @@ function validateInput(input: string) {
 
 export function enterNumber() {
   const cells = document.querySelectorAll<HTMLInputElement>(".col");
-  Array.from(cells).forEach((cell) => {
+  Array.from(cells).forEach((cell, index) => {
     let oldValue = cell.value;
     cell.addEventListener("beforeinput", (event) => {
       oldValue = cell.value;
@@ -101,6 +102,17 @@ export function enterNumber() {
 
     cell.addEventListener("input", (event) => {
       cell.value = validateInput(cell.value) ? cell.value : oldValue;
+
+      const rowIndex = Math.floor(index / 16);
+      const row = mainBoard[rowIndex];
+      console.log("event index: ", index);
+      console.log("event row: ", row);
+      console.log("board row: ", mainBoard[rowIndex]);
+
+      if (cell.value != "" && row) {
+        const exists = checkRow(parseInt(cell.value), row);
+        console.log("exists: ", exists);
+      }
     });
   });
 }
