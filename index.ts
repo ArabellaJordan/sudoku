@@ -77,12 +77,30 @@ export function setVersion() {
   }
 }
 
+function validateInput(input: string) {
+  if (input == "" || input == null) return true;
+
+  const hasNonNumbers = !/^\d+$/.test(input);
+  if (hasNonNumbers) return false;
+
+  const number = parseInt(input);
+
+  if (number > 0 && number <= 16) {
+    return true;
+  }
+  return false;
+}
+
 export function enterNumber() {
-  const cells = document.getElementsByClassName("col");
+  const cells = document.querySelectorAll<HTMLInputElement>(".col");
   Array.from(cells).forEach((cell) => {
+    let oldValue = cell.value;
+    cell.addEventListener("beforeinput", (event) => {
+      oldValue = cell.value;
+    });
+
     cell.addEventListener("input", (event) => {
-      cell.innerHTML = "Z";
-      console.log(event);
+      cell.value = validateInput(cell.value) ? cell.value : oldValue;
     });
   });
 }
