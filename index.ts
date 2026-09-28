@@ -105,6 +105,7 @@ export function enterNumber() {
 
       const rowIndex = Math.floor(index / 16);
       const row = mainBoard[rowIndex];
+      const colIndex = index % 16;
 
       if (row) {
         const exists = checkRow(parseInt(cell.value), row);
@@ -114,6 +115,10 @@ export function enterNumber() {
           cell.classList.remove("invalid");
         }
       }
+
+      // save the inputted values in the board so the new values can be validated
+      mainBoard[rowIndex]![colIndex] = parseInt(cell.value);
+
     });
   });
 }
