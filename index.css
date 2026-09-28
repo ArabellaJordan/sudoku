@@ -54,11 +54,12 @@ h1 {
 }
 
 .invalid {
-  color: rgb(201, 19, 19) !important;
+  color: rgb(201, 19, 19);
 }
 
 .inactive {
   cursor: default !important;
+  color: rgb(84, 84, 84) !important;
 }
 
 .inactive:hover {

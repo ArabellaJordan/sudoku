@@ -47,12 +47,6 @@ function existInColumn(number: number, column: number[]) {
   return exist;
 }
 
-// checks if the row includes the input
-export function checkRow(number: number, row: number[]): boolean {
-  const exist = row.includes(number);
-  return exist;
-}
-
 function convertToLetter(number: number): number | string {
   if (number >= 0 && number <= 9) return number;
 
@@ -94,31 +88,39 @@ function validateInput(input: string) {
 
 export function enterNumber() {
   const cells = document.querySelectorAll<HTMLInputElement>(".col");
-  Array.from(cells).forEach((cell, index) => {
+  const arrayCells = Array.from(cells);
+  arrayCells.forEach((cell, index) => {
     let oldValue = cell.value;
     cell.addEventListener("beforeinput", (event) => {
       oldValue = cell.value;
     });
 
     cell.addEventListener("input", (event) => {
-      cell.value = validateInput(cell.value) ? cell.value : oldValue;
+      cell.value = validateInput(cell.value) ? cell.value : (oldValue ?? 0);
 
       const rowIndex = Math.floor(index / 16);
-      const row = mainBoard[rowIndex];
       const colIndex = index % 16;
 
-      if (row) {
-        const exists = checkRow(parseInt(cell.value), row);
-        if (exists) {
-          cell.classList.add("invalid");
-        } else {
-          cell.classList.remove("invalid");
-        }
-      }
+      const cellValue = isNaN(parseInt(cell.value)) ? 0 : parseInt(cell.value);
 
       // save the inputted values in the board so the new values can be validated
-      mainBoard[rowIndex]![colIndex] = parseInt(cell.value);
+      mainBoard[rowIndex]![colIndex] = cellValue;
+      const row = mainBoard[rowIndex];
 
+      const rowWithoutZero = row?.filter((number) => number !== 0);
+      const hasDuplicates =
+        new Set(rowWithoutZero).size !== rowWithoutZero?.length;
+
+      // check the whole row
+      row?.forEach((number, index) => {
+        const cellIndex = 16 * rowIndex + index;
+
+        if (number == cellValue && hasDuplicates) {
+          arrayCells[cellIndex]?.classList.add("invalid");
+        } else if (!hasDuplicates) {
+          arrayCells[cellIndex]?.classList.remove("invalid");
+        }
+      });
     });
   });
 }
