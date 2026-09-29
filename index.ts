@@ -86,6 +86,22 @@ function validateInput(input: string) {
   return false;
 }
 
+function findRowDuplicates(row: number[]): number[] {
+  const duplicates = new Set<number>();
+  const checked = new Set();
+
+  for (const num of row) {
+    if (checked.has(num)) {
+      duplicates.add(num);
+    } else {
+      checked.add(num);
+    }
+  }
+
+  duplicates.delete(0);
+  return [...duplicates];
+}
+
 export function enterNumber() {
   const cells = document.querySelectorAll<HTMLInputElement>(".col");
   const arrayCells = Array.from(cells);
@@ -102,22 +118,18 @@ export function enterNumber() {
       const colIndex = index % 16;
 
       const cellValue = isNaN(parseInt(cell.value)) ? 0 : parseInt(cell.value);
-
-      // save the inputted values in the board so the new values can be validated
       mainBoard[rowIndex]![colIndex] = cellValue;
-      const row = mainBoard[rowIndex];
+      const row = mainBoard[rowIndex]!;
 
-      const rowWithoutZero = row?.filter((number) => number !== 0);
-      const hasDuplicates =
-        new Set(rowWithoutZero).size !== rowWithoutZero?.length;
+      const duplicates = findRowDuplicates(row);
 
-      // check the whole row
       row?.forEach((number, index) => {
+        const isIncluded = duplicates.includes(number);
         const cellIndex = 16 * rowIndex + index;
 
-        if (number == cellValue && hasDuplicates) {
+        if (isIncluded) {
           arrayCells[cellIndex]?.classList.add("invalid");
-        } else if (!hasDuplicates) {
+        } else {
           arrayCells[cellIndex]?.classList.remove("invalid");
         }
       });
