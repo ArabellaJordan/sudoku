@@ -86,7 +86,7 @@ function validateInput(input: string) {
   return false;
 }
 
-function findRowDuplicates(row: number[]): number[] {
+export function findRowDuplicates(row: number[]): number[] {
   const duplicates = new Set<number>();
   const checked = new Set();
 
