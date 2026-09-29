@@ -9,4 +9,8 @@ describe(findRowDuplicates, () => {
   it("does not treat 0 as duplicate", () => {
     expect(findRowDuplicates([1, 1, 0, 5, 11, 15, 0, 0, 0])).toEqual([1]);
   });
+
+  it("returns empty array when there is no duplicate", () => {
+    expect(findRowDuplicates([1, 2, 6, 12, 13, 8])).toEqual([]);
+  });
 });
