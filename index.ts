@@ -1,9 +1,7 @@
 import { solvedBoard } from "./solution.js";
 let mainBoard: number[][];
 
-export function loadBoard() {
-  const board = generateBoard();
-
+export function displayBoard(board: number[][]) {
   const cells = Array.from(document.querySelectorAll<HTMLInputElement>(".col"));
 
   cells.forEach((cell, index) => {
@@ -18,6 +16,11 @@ export function loadBoard() {
       cell.value = "";
     }
   });
+}
+
+export function loadBoard() {
+  const board = generateBoard();
+  displayBoard(board);
 }
 
 function generateBoard() {
