@@ -17,9 +17,10 @@
   "scripts": {
     "dev": "node dist/index.js",
     "build": "tsc && shx cp index.html index.css dist/",
-    "test": "vitest run"
+    "test": "vitest run --environment jsdom"
   },
   "devDependencies": {
+    "jsdom": "^30.1.1",
     "shx": "^0.4.0",
     "typescript": "^7.0.2",
     "vitest": "^4.1.11"

@@ -23,7 +23,7 @@ export function loadBoard() {
   displayBoard(board);
 }
 
-function generateBoard() {
+export function generateBoard() {
   const solvedBoard = getBoard();
   mainBoard = showFewNumbers(solvedBoard);
 

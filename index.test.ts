@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { findRowDuplicates } from "./index";
+import { displayBoard, findRowDuplicates } from "./index";
 
 describe(findRowDuplicates, () => {
   it("returns an array of numbers that appears more than once", () => {
@@ -12,5 +12,16 @@ describe(findRowDuplicates, () => {
 
   it("returns empty array when there is no duplicate", () => {
     expect(findRowDuplicates([1, 2, 6, 12, 13, 8])).toEqual([]);
+  });
+});
+
+describe(displayBoard, () => {
+  it("displays value in the cell", () => {
+    document.body.innerHTML = `<input class="col" />`;
+
+    displayBoard([[5]]);
+
+    const cell = document.querySelector<HTMLInputElement>(".col");
+    expect(cell?.value).toBe("5");
   });
 });
