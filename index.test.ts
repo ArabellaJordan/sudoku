@@ -24,4 +24,13 @@ describe(displayBoard, () => {
     const cell = document.querySelector<HTMLInputElement>(".col");
     expect(cell?.value).toBe("5");
   });
+
+  it("displays none in the cell when value is 0", () => {
+    document.body.innerHTML = `<input class="col" />`;
+
+    displayBoard([[0]]);
+
+    const cell = document.querySelector<HTMLInputElement>(".col");
+    expect(cell?.value).toBe("");
+  });
 });
