@@ -9,6 +9,14 @@ describe("isBoardFull", () => {
     ];
     expect(isBoardFull(board)).toBe(true);
   });
+
+  it("if the board is not full, game is not won", () => {
+    const board = [
+      [1, 2],
+      [2, 0],
+    ];
+    expect(isBoardFull(board)).toBe(false);
+  });
 });
 
 describe(findRowDuplicates, () => {
