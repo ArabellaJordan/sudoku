@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { displayBoard, findRowDuplicates, isBoardFull } from "./index";
+import {
+  disableBoard,
+  displayBoard,
+  findRowDuplicates,
+  isBoardFull,
+} from "./index";
 
 describe("isBoardFull", () => {
   it("if the board is full, game is won", () => {
@@ -19,7 +24,21 @@ describe("isBoardFull", () => {
   });
 });
 
-describe(findRowDuplicates, () => {
+describe("disableBoard", () => {
+  it("disable board cells", () => {
+    document.body.innerHTML = `<input class = "col" />
+    <input class = "col" />
+    <input class = "col" />`;
+    disableBoard();
+
+    const isDisabled =
+      document.querySelector<HTMLInputElement>(".col:disabled") !== null;
+
+    expect(isDisabled).toBe(true);
+  });
+});
+
+describe("findRowDuplicates", () => {
   it("returns an array of numbers that appears more than once", () => {
     expect(findRowDuplicates([5, 3, 5, 2, 8, 10, 1])).toEqual([5]);
   });
@@ -33,7 +52,7 @@ describe(findRowDuplicates, () => {
   });
 });
 
-describe(displayBoard, () => {
+describe("displayBoard", () => {
   it("displays value in the cell", () => {
     document.body.innerHTML = `<input class="col" />`;
 
