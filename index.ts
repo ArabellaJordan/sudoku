@@ -139,3 +139,7 @@ export function enterNumber() {
     });
   });
 }
+
+export function isBoardFull(board: number[][]) {
+  return false;
+}

@@ -1,5 +1,15 @@
 import { describe, expect, it } from "vitest";
-import { displayBoard, findRowDuplicates } from "./index";
+import { displayBoard, findRowDuplicates, isBoardFull } from "./index";
+
+describe("isBoardFull", () => {
+  it("if the board is full, game is won", () => {
+    const board = [
+      [1, 2],
+      [2, 1],
+    ];
+    expect(isBoardFull(board)).toBe(true);
+  });
+});
 
 describe(findRowDuplicates, () => {
   it("returns an array of numbers that appears more than once", () => {
