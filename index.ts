@@ -105,6 +105,15 @@ export function findRowDuplicates(row: number[]): number[] {
   return [...duplicates];
 }
 
+export function updateBoardCell(
+  board: number[][],
+  rowIndex: number,
+  colIndex: number,
+  value: number,
+) {
+  board[rowIndex]![colIndex] = value;
+}
+
 export function enterNumber(board: number[][]) {
   const cells = document.querySelectorAll<HTMLInputElement>(".col");
   const arrayCells = Array.from(cells);
@@ -121,7 +130,8 @@ export function enterNumber(board: number[][]) {
       const colIndex = index % 16;
 
       const cellValue = isNaN(parseInt(cell.value)) ? 0 : parseInt(cell.value);
-      board[rowIndex]![colIndex] = cellValue;
+      // board[rowIndex]![colIndex] = cellValue;
+      updateBoardCell(board, rowIndex, colIndex, cellValue);
       const row = board[rowIndex]!;
 
       const duplicates = findRowDuplicates(row);
