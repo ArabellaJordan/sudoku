@@ -114,6 +114,27 @@ export function updateBoardCell(
   board[rowIndex]![colIndex] = value;
 }
 
+// ui change when the input is invalid
+export function updateRowInvalidStyles(
+  cells: HTMLInputElement[],
+  rowIndex: number,
+  row: number[],
+) {
+  const duplicates = findRowDuplicates(row);
+
+  row?.forEach((number, index) => {
+    const isIncluded = duplicates.includes(number);
+    const cellIndex = 16 * rowIndex + index;
+    const cell = cells[cellIndex];
+
+    if (isIncluded) {
+      cell?.classList.add("invalid");
+    } else {
+      cell?.classList.remove("invalid");
+    }
+  });
+}
+
 export function enterNumber(board: number[][]) {
   const cells = document.querySelectorAll<HTMLInputElement>(".col");
   const arrayCells = Array.from(cells);
@@ -130,22 +151,10 @@ export function enterNumber(board: number[][]) {
       const colIndex = index % 16;
 
       const cellValue = isNaN(parseInt(cell.value)) ? 0 : parseInt(cell.value);
-      // board[rowIndex]![colIndex] = cellValue;
+
       updateBoardCell(board, rowIndex, colIndex, cellValue);
-      const row = board[rowIndex]!;
 
-      const duplicates = findRowDuplicates(row);
-
-      row?.forEach((number, index) => {
-        const isIncluded = duplicates.includes(number);
-        const cellIndex = 16 * rowIndex + index;
-
-        if (isIncluded) {
-          arrayCells[cellIndex]?.classList.add("invalid");
-        } else {
-          arrayCells[cellIndex]?.classList.remove("invalid");
-        }
-      });
+      updateRowInvalidStyles(arrayCells, rowIndex, board[rowIndex]!);
     });
   });
 }
