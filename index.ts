@@ -155,6 +155,8 @@ export function enterNumber(board: number[][]) {
       updateBoardCell(board, rowIndex, colIndex, cellValue);
 
       updateRowInvalidStyles(arrayCells, rowIndex, board[rowIndex]!);
+
+      isBoardFull(board);
     });
   });
 }
@@ -162,8 +164,14 @@ export function enterNumber(board: number[][]) {
 export function isBoardFull(board: number[][]): boolean {
   for (let row = 0; row < board.length; row++) {
     const hasZero = board[row]!.includes(0);
+
+    console.log("board is not full");
+
     if (hasZero) return false;
   }
+
+  console.log("board is full");
+
   return true;
 }
 
