@@ -1,5 +1,4 @@
 import { solvedBoard } from "./solution.js";
-let mainBoard: number[][];
 
 export function displayBoard(board: number[][]) {
   const cells = Array.from(document.querySelectorAll<HTMLInputElement>(".col"));
@@ -21,13 +20,14 @@ export function displayBoard(board: number[][]) {
 export function loadBoard() {
   const board = generateBoard();
   displayBoard(board);
+  enterNumber(board);
 }
 
-export function generateBoard() {
+export function generateBoard(): number[][] {
   const solvedBoard = getBoard();
-  mainBoard = showFewNumbers(solvedBoard);
+  const board = showFewNumbers(solvedBoard);
 
-  return mainBoard;
+  return board;
 }
 
 // only show a few numbers
@@ -105,7 +105,7 @@ export function findRowDuplicates(row: number[]): number[] {
   return [...duplicates];
 }
 
-export function enterNumber() {
+export function enterNumber(board: number[][]) {
   const cells = document.querySelectorAll<HTMLInputElement>(".col");
   const arrayCells = Array.from(cells);
   arrayCells.forEach((cell, index) => {
@@ -121,8 +121,8 @@ export function enterNumber() {
       const colIndex = index % 16;
 
       const cellValue = isNaN(parseInt(cell.value)) ? 0 : parseInt(cell.value);
-      mainBoard[rowIndex]![colIndex] = cellValue;
-      const row = mainBoard[rowIndex]!;
+      board[rowIndex]![colIndex] = cellValue;
+      const row = board[rowIndex]!;
 
       const duplicates = findRowDuplicates(row);
 
