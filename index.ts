@@ -140,8 +140,12 @@ export function enterNumber() {
   });
 }
 
-export function isBoardFull(board: number[][]) {
-  return false;
+export function isBoardFull(board: number[][]): boolean {
+  for (let row = 0; row < board.length; row++) {
+    const hasZero = board[row]!.includes(0);
+    if (hasZero) return false;
+  }
+  return true;
 }
 
 export function gameWon(board: number[][]) {}
