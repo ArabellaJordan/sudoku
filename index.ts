@@ -144,4 +144,6 @@ export function isBoardFull(board: number[][]) {
   return false;
 }
 
+export function gameWon(board: number[][]) {}
+
 export function disableBoard() {}

@@ -3,6 +3,7 @@ import {
   disableBoard,
   displayBoard,
   findRowDuplicates,
+  gameWon,
   isBoardFull,
 } from "./index";
 
@@ -21,6 +22,22 @@ describe("isBoardFull", () => {
       [2, 0],
     ];
     expect(isBoardFull(board)).toBe(false);
+  });
+
+  it("if the game is won, you cant make any move", () => {
+    const board = [
+      [1, 2],
+      [2, 1],
+    ];
+
+    document.body.innerHTML = `<input class = "col" />`;
+
+    gameWon(board);
+
+    const isDisabled =
+      document.querySelector<HTMLInputElement>(".col:disabled") !== null;
+
+    expect(isDisabled).toBe(true);
   });
 });
 
