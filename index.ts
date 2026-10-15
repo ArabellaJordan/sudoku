@@ -156,25 +156,38 @@ export function enterNumber(board: number[][]) {
 
       updateRowInvalidStyles(arrayCells, rowIndex, board[rowIndex]!);
 
-      isBoardFull(board);
+      isGameWon(board);
     });
   });
+}
+
+export function isGameWon(board: number[][]) {
+  const won = isBoardFull(board);
+
+  if (won) {
+    gameWon();
+  }
 }
 
 export function isBoardFull(board: number[][]): boolean {
   for (let row = 0; row < board.length; row++) {
     const hasZero = board[row]!.includes(0);
-
-    console.log("board is not full");
-
     if (hasZero) return false;
   }
-
-  console.log("board is full");
 
   return true;
 }
 
-export function gameWon(board: number[][]) {}
+function gameWon() {
+  console.log("game is won!");
+  disableBoard();
+}
 
-export function disableBoard() {}
+export function disableBoard() {
+  const board = document.getElementById("board");
+  const cells = board?.querySelectorAll("input");
+
+  cells?.forEach((cell) => {
+    cell.disabled = true;
+  });
+}

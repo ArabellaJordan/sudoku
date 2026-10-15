@@ -3,8 +3,8 @@ import {
   disableBoard,
   displayBoard,
   findRowDuplicates,
-  gameWon,
   isBoardFull,
+  isGameWon,
 } from "./index";
 
 describe("isBoardFull", () => {
@@ -30,9 +30,13 @@ describe("isBoardFull", () => {
       [2, 1],
     ];
 
-    document.body.innerHTML = `<input class = "col" />`;
+    document.body.innerHTML = `<div id= "board">
+      <input class = "col" />
+      <input class = "col" />
+      <input class = "col" />
+    </div>`;
 
-    gameWon(board);
+    isGameWon(board);
 
     const isDisabled =
       document.querySelector<HTMLInputElement>(".col:disabled") !== null;
@@ -43,9 +47,12 @@ describe("isBoardFull", () => {
 
 describe("disableBoard", () => {
   it("disable board cells", () => {
-    document.body.innerHTML = `<input class = "col" />
-    <input class = "col" />
-    <input class = "col" />`;
+    document.body.innerHTML = `<div id= "board">
+      <input class = "col" />
+      <input class = "col" />
+      <input class = "col" />
+    </div>`;
+
     disableBoard();
 
     const isDisabled =
