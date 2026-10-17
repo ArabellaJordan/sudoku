@@ -139,16 +139,19 @@ export function enterNumber(board: number[][]) {
   const cells = document.querySelectorAll<HTMLInputElement>(".col");
   const arrayCells = Array.from(cells);
   arrayCells.forEach((cell, index) => {
+    // save old value
     let oldValue = cell.value;
     cell.addEventListener("beforeinput", (event) => {
       oldValue = cell.value;
     });
 
     cell.addEventListener("input", (event) => {
+      // return to old value or 0 if new input is invalid
       cell.value = validateInput(cell.value) ? cell.value : (oldValue ?? 0);
 
-      const rowIndex = Math.floor(index / 16);
-      const colIndex = index % 16;
+      const length = board.length;
+      const rowIndex = Math.floor(index / length);
+      const colIndex = index % length;
 
       const cellValue = isNaN(parseInt(cell.value)) ? 0 : parseInt(cell.value);
 

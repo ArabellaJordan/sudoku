@@ -2,10 +2,37 @@ import { describe, expect, it } from "vitest";
 import {
   disableBoard,
   displayBoard,
+  enterNumber,
   findRowDuplicates,
   isBoardFull,
   isGameWon,
 } from "./index";
+
+describe("enter number", () => {
+  it("if you enter a number in an empty value, that cell holds the value.", () => {
+    const board = [
+      [0, 2],
+      [0, 1],
+    ];
+
+    document.body.innerHTML = `
+      <div id="board">
+        <input class="col" />
+        <input class="col" />
+        <input class="col" />
+        <input class="col" />
+      </div>`;
+
+    enterNumber(board);
+    const cells = document.querySelectorAll<HTMLInputElement>(".col");
+    const cell = cells[2];
+
+    cell.value = "3";
+    cell.dispatchEvent(new Event("input"));
+
+    expect(board[1][0]).toBe(3);
+  });
+});
 
 describe("isBoardFull", () => {
   it("if the board is full, game is won", () => {
