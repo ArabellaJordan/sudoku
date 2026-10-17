@@ -43,6 +43,26 @@ describe("isBoardFull", () => {
 
     expect(isDisabled).toBe(true);
   });
+
+  it("if the game is not won, you can make a move", () => {
+    const board = [
+      [1, 2],
+      [2, 0],
+    ];
+
+    document.body.innerHTML = `<div id= "board">
+      <input class = "col" />
+      <input class = "col" />
+      <input class = "col" />
+    </div>`;
+
+    isGameWon(board);
+
+    const isDisabled =
+      document.querySelector<HTMLInputElement>(".col:disabled") !== null;
+
+    expect(isDisabled).toBe(false);
+  });
 });
 
 describe("disableBoard", () => {
