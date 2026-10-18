@@ -32,6 +32,17 @@ describe("enter number", () => {
 
     expect(board[1][0]).toBe(3);
   });
+
+  it("if you enter in a cell with an existing value, return an invalid message", () => {
+    document.body.innerHTML = `
+    <p id="message"></p>`;
+
+    const messageElement =
+      document.querySelectorAll<HTMLParagraphElement>("#message");
+    const message = messageElement[0].textContent;
+
+    expect(message).toBe("Invalid move");
+  });
 });
 
 describe("isBoardFull", () => {
