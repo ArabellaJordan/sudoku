@@ -89,7 +89,25 @@ function validateInput(input: string) {
   return false;
 }
 
-export function findColumnDuplicates(board: number[][]) {}
+export function findColumnDuplicates(
+  board: number[][],
+  colIndex: number,
+): number[] {
+  const duplicates = new Set<number>();
+  const checked = new Set();
+
+  for (let r = 0; r < board.length; r++) {
+    const num = board[r]![colIndex]!;
+    if (checked.has(num)) {
+      duplicates.add(num);
+    } else {
+      checked.add(num);
+    }
+  }
+
+  duplicates.delete(0);
+  return [...duplicates];
+}
 
 export function findRowDuplicates(row: number[]): number[] {
   const duplicates = new Set<number>();

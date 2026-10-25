@@ -144,33 +144,34 @@ describe("disableBoard", () => {
 
 describe("findColumnDuplicates", () => {
   it("returns an array of numbers that appears more than once", () => {
-    expect(
-      findColumnDuplicates([
-        [5, 0, 1],
-        [5, 2, 0],
-        [0, 3, 2],
-      ]),
-    ).toEqual([5]);
+    const board = [
+      [5, 0, 1],
+      [5, 2, 0],
+      [0, 3, 2],
+    ];
+
+    expect(findColumnDuplicates(board, 0)).toEqual([5]);
   });
 
   it("does not treat 0 as duplicate", () => {
-    expect(
-      findColumnDuplicates([
-        [5, 0, 1],
-        [5, 0, 6],
-        [0, 3, 2],
-      ]),
-    ).toEqual([5]);
+    const board = [
+      [2, 0, 1, 4],
+      [5, 0, 6, 1],
+      [0, 3, 2, 6],
+      [1, 3, 4, 8],
+    ];
+
+    expect(findColumnDuplicates(board, 1)).toEqual([3]);
   });
 
   it("returns empty array when there is no duplicate", () => {
-    expect(
-      findColumnDuplicates([
-        [6, 0, 1],
-        [5, 2, 0],
-        [0, 3, 2],
-      ]),
-    ).toEqual([]);
+    const board = [
+      [0, 5, 1],
+      [5, 2, 0],
+      [0, 3, 2],
+    ];
+
+    expect(findColumnDuplicates(board, 0)).toEqual([]);
   });
 });
 
