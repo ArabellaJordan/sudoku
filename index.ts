@@ -135,6 +135,15 @@ export function updateRowInvalidStyles(
   });
 }
 
+export function displayError(message: string) {
+  const messageElement =
+    document.querySelector<HTMLParagraphElement>("#message");
+
+  if (messageElement) {
+    messageElement.textContent = message;
+  }
+}
+
 export function enterNumber(board: number[][]) {
   const cells = document.querySelectorAll<HTMLInputElement>(".col");
   const arrayCells = Array.from(cells);
@@ -147,9 +156,18 @@ export function enterNumber(board: number[][]) {
 
     cell.addEventListener("input", (event) => {
       // return to old value or 0 if new input is invalid
-      cell.value = validateInput(cell.value) ? cell.value : (oldValue ?? 0);
+      const isInputValid: boolean = validateInput(cell.value);
+      cell.value = isInputValid ? cell.value : (oldValue ?? 0);
 
-      const length = board.length;
+      if (!isInputValid) {
+        console.log("Invalid input.");
+        displayError("Invalid input");
+        return;
+      } else {
+        displayError("");
+      }
+
+      const length = board?.length;
       const rowIndex = Math.floor(index / length);
       const colIndex = index % length;
 
