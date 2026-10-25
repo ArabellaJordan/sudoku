@@ -37,9 +37,30 @@ describe("enter number", () => {
     document.body.innerHTML = `
     <p id="message"></p>`;
 
+    const board = [
+      [5, 2],
+      [0, 1],
+    ];
+
+    document.body.innerHTML = `
+      <p id="message"></p>
+      <div id="board">
+        <input class="col" />
+        <input class="col" />
+        <input class="col" />
+        <input class="col" />
+      </div>`;
+
+    enterNumber(board);
+    const cells = document.querySelectorAll<HTMLInputElement>(".col");
+    const cell = cells[1]!;
+
+    cell.value = "23";
+    cell.dispatchEvent(new Event("input"));
+
     const messageElement =
-      document.querySelectorAll<HTMLParagraphElement>("#message");
-    const message = messageElement[0].textContent;
+      document.querySelector<HTMLParagraphElement>("#message");
+    const message = messageElement?.textContent;
 
     expect(message).toBe("Invalid move");
   });

@@ -160,8 +160,7 @@ export function enterNumber(board: number[][]) {
       cell.value = isInputValid ? cell.value : (oldValue ?? 0);
 
       if (!isInputValid) {
-        console.log("Invalid input.");
-        displayError("Invalid input");
+        displayError("Invalid move");
         return;
       } else {
         displayError("");
