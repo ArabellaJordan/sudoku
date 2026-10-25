@@ -3,6 +3,7 @@ import {
   disableBoard,
   displayBoard,
   enterNumber,
+  findColumnDuplicates,
   findRowDuplicates,
   isBoardFull,
   isGameWon,
@@ -138,6 +139,38 @@ describe("disableBoard", () => {
       document.querySelector<HTMLInputElement>(".col:disabled") !== null;
 
     expect(isDisabled).toBe(true);
+  });
+});
+
+describe("findColumnDuplicates", () => {
+  it("returns an array of numbers that appears more than once", () => {
+    expect(
+      findColumnDuplicates([
+        [5, 0, 1],
+        [5, 2, 0],
+        [0, 3, 2],
+      ]),
+    ).toEqual([5]);
+  });
+
+  it("does not treat 0 as duplicate", () => {
+    expect(
+      findColumnDuplicates([
+        [5, 0, 1],
+        [5, 0, 6],
+        [0, 3, 2],
+      ]),
+    ).toEqual([5]);
+  });
+
+  it("returns empty array when there is no duplicate", () => {
+    expect(
+      findColumnDuplicates([
+        [6, 0, 1],
+        [5, 2, 0],
+        [0, 3, 2],
+      ]),
+    ).toEqual([]);
   });
 });
 

@@ -89,6 +89,8 @@ function validateInput(input: string) {
   return false;
 }
 
+export function findColumnDuplicates(board: number[][]) {}
+
 export function findRowDuplicates(row: number[]): number[] {
   const duplicates = new Set<number>();
   const checked = new Set();
